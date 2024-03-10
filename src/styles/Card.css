@@ -1,0 +1,43 @@
+/* Card.css
+.container {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 2px grey;
+    padding: 8px;
+    color: #000;
+    margin-bottom: 8px;
+    min-height: 120px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.container.dragging {
+    background-color: lightgreen;
+}
+
+.container.draggable-backlog {
+    background-color: #f2d7d5;
+}
+
+.container.draggable-not-backlog {
+    background-color: #dcdcdc;
+}
+
+.container.draggable {
+    background-color: #eaf4fc;
+}
+
+.text-content {
+}
+
+.icons {
+    display: flex;
+    justify-content: end;
+    padding: 2px;
+}
+
+.icons .avatar {
+} */
