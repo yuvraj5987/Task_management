@@ -40,6 +40,7 @@ function bgcolorChange(props) {
 
 export default function Card({ task, index }) {
     return (
+        
         <Draggable draggableId={`${task.id}`} key={task.id} index={index}>
          
             {(provided, snapshot) => (
@@ -52,7 +53,6 @@ export default function Card({ task, index }) {
                     <div style={{ display: "flex", justifyContent: "start", padding: 2 }}>
             <span>
               <small>
-                {console.log("teddd",task)}
                 #{task.id}
                   {"  "}
               </small>
@@ -75,5 +75,6 @@ export default function Card({ task, index }) {
                 </Container>
             )}
         </Draggable>
+        
     );
 }

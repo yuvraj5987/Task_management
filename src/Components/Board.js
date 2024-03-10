@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext,Droppable } from "react-beautiful-dnd";
 import Column from "./Column";
 import mockData from "../mockData";
+import { Button } from "antd";
 
 export default function Board() {
     const [completed, setCompleted] = useState([]);
@@ -10,7 +11,6 @@ export default function Board() {
     const [inReview, setInReview] = useState([]);
 
     useEffect(()=>{
-      console.log("rahul123",mockData);
      const complted= mockData.filter(item=>item.completed===true);
      const incompleted= mockData.filter(item=>item.completed===false);
      setCompleted(complted);
@@ -19,6 +19,7 @@ export default function Board() {
     },[])
 
     const handleDragEnd = (result) => {
+        console.log("rahul1222",result)
         const { destination, source, draggableId } = result;
 
         if (!destination || source.droppableId === destination.droppableId) return;
@@ -78,8 +79,13 @@ export default function Board() {
     }
 
     return (
+        <div style={{marginTop:"10px"}}>
+        <div>
+        <h2 style={{ textAlign: "center" }}>Task Management</h2>
+             <Button style={{ textAlign: "center" }}>Add Task</Button>
+       </div>
+       <br></br>
         <DragDropContext onDragEnd={handleDragEnd}>
-            <h2 style={{ textAlign: "center" }}>Task Management</h2>
             <div
                 style={{
                     display: "flex",
@@ -95,5 +101,6 @@ export default function Board() {
                 <Column title={"Completed"} tasks={inReview} id={"3"} />
             </div>
         </DragDropContext>
+        </div>
     );
 }

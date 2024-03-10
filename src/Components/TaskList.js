@@ -2,12 +2,17 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import TaskItem from "./TaskItem";
 import mockData from "../mockData";
+import { Button } from "antd";
+import TaskForm from "./TaskForm";
 
 const TaskList = () => {
     const [completed, setCompleted] = useState([]);
     const [incomplete, setIncomplete] = useState([]);
     const [backlog, setBacklog] = useState([]);
     const [inReview, setInReview] = useState([]);
+    const [popup, setPopup] = useState(false);
+
+   
 
     useEffect(() => {
         const complted = mockData.filter(item => item.completed === true);
@@ -79,9 +84,19 @@ const TaskList = () => {
         return array.filter((item) => item.id !== id);
     };
 
+    const taskFormModel=()=>{
+        console.log("dineshhhhhhhh");
+        setPopup(!popup);
+    }
+
     return (
+        <div style={{marginTop:"10px"}}>
+        <div>
+        <h2 style={{ textAlign: "center" }}>Task Management</h2>
+             <button style={{ textAlign: "center" }} onclick={()=>taskFormModel()}>Add Task</button>
+       </div>
+       <br></br>
         <DragDropContext onDragEnd={handleDragEnd}>
-            <h2 style={{ textAlign: "center" }}>Task Management</h2>
             <div
                 style={{
                     display: "flex",
@@ -97,6 +112,8 @@ const TaskList = () => {
                 <TaskItem title={"Completed"} tasks={inReview} id={"3"} />
             </div>
         </DragDropContext>
+        { popup && <TaskForm  toggle={taskFormModel} popup={popup} /> }
+        </div>
     );
 };
 

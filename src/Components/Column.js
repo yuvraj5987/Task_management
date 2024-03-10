@@ -41,21 +41,25 @@ const Column = ({ title, tasks, id }) => {
       >
         {title}
       </Title>
+      {console.log("id",id)}
+      {id && tasks &&
       <Droppable droppableId={id}>
         {(provided, snapshot) => (
+          
           <TaskList
             ref={provided.innerRef}
             {...provided.droppableProps}
-            isDraggingOver={snapshot.isDraggingOver}
+            isDraggingOver={snapshot.isDraggingOver}z
           >
             {tasks.map((task, index) => (
               <Card key={index} index={index} task={task} />
             ))}
-            {console.log("dataas", snapshot)}
+           
             {provided.placeholder}
           </TaskList>
         )}
       </Droppable>
+     }
     </Container>
   );
 };
