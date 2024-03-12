@@ -23,24 +23,24 @@ const TaskItem = ({ title, tasks, id }) => {
   flex-direction: column;
 `;
 
-const TextContent = styled.div``;
+  const TextContent = styled.div``;
 
-const Icons = styled.div`
+  const Icons = styled.div`
   display: flex;
   justify-content: end;
   padding: 2px;
 `;
-function bgcolorChange(props) {
-  return props.isDragging
+  function bgcolorChange(props) {
+    return props.isDragging
       ? "lightgreen"
       : props.isDraggable
-          ? props.isBacklog
-              ? "#F2D7D5"
-              : "#DCDCDC"
-          : props.isBacklog
-              ? "#F2D7D5"
-              : "#EAF4FC";
-}
+        ? props.isBacklog
+          ? "#F2D7D5"
+          : "#DCDCDC"
+        : props.isBacklog
+          ? "#F2D7D5"
+          : "#EAF4FC";
+  }
 
 
   return (
@@ -63,44 +63,43 @@ function bgcolorChange(props) {
             {...provided.droppableProps}
             isDraggingOver={snapshot.isDraggingOver}
           >
-            {console.log("yyyyy",tasks)}
             {tasks.map((task, index) => (
               // <Card key={index} index={index} task={task} />
               <Draggable draggableId={`${task.id}`} key={task.id} index={index}>
-         
-              {(provided, snapshot) => (
+
+                {(provided, snapshot) => (
                   <Container
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      ref={provided.innerRef}
-                      isDragging={snapshot.isDragging}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    ref={provided.innerRef}
+                    isDragging={snapshot.isDragging}
                   >
-                      <div style={{ display: "flex", justifyContent: "start", padding: 2 }}>
-              <span>
-                <small>
-                  {console.log("teddd",task)}
-                  #{task.id}
-                    {"  "}
-                </small>
-              </span>
+                    <div style={{ display: "flex", justifyContent: "start", padding: 2 }}>
+                      <span>
+                        <small>
+                          {console.log("teddd", task)}
+                          #{task.id}
+                          {"  "}
+                        </small>
+                      </span>
+                    </div>
+                    <div
+                      style={{ display: "flex", justifyContent: "center", padding: 2 }}
+                    >
+                      <TextContent>{task.title}</TextContent>
+                    </div>
+                    <Icons>
+                      <div>
+                        <Avatar
+                          onClick={() => console.log(task)}
+                          src={"https://joesch.moe/api/v1/random?key=" + task.id}
+                        />
                       </div>
-                      <div
-                          style={{ display: "flex", justifyContent: "center", padding: 2 }}
-                      >
-                          <TextContent>{task.title}</TextContent>
-                      </div>
-                      <Icons>
-                          <div>
-                              <Avatar
-                                  onClick={() => console.log(task)}
-                                  src={"https://joesch.moe/api/v1/random?key=" + task.id}
-                              />
-                          </div>
-                      </Icons>
-                      {provided.placeholder}
+                    </Icons>
+                    {provided.placeholder}
                   </Container>
-              )}
-          </Draggable>
+                )}
+              </Draggable>
             ))}
 
             {provided.placeholder}
